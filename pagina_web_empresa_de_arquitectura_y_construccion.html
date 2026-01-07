@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ARCOM | Arquitectura y Construcción</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; scroll-behavior: smooth; }
+    header { background: #1f2933; color: #fff; padding: 60px 20px; text-align: center; position: relative; }
+    header h1 { font-size: 2.8rem; margin-bottom: 10px; }
+    header p { font-size: 1.2rem; color: #d1d5db; }
+    nav { background: #111827; padding: 15px; text-align: center; position: sticky; top: 0; z-index: 999; }
+    nav a { color: #fff; margin: 0 15px; text-decoration: none; font-weight: 500; }
+    nav a:hover { text-decoration: underline; }
+    section { padding: 60px 20px; max-width: 1100px; margin: auto; }
+    .section-title { font-size: 2rem; margin-bottom: 30px; text-align: center; }
+    .about, .services, .why, .projects, .gallery, .header-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
+    .card { background: #f9fafb; padding: 30px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-align: center; transition: transform 0.3s, box-shadow 0.3s; }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
+    .project { background: #e5e7eb; height: 180px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #374151; border-radius: 12px; transition: transform 0.3s; }
+    .project:hover { transform: scale(1.05); }
+    .contact { background: #f3f4f6; border-radius: 12px; padding: 40px; }
+    form { display: grid; gap: 15px; }
+    input, textarea { padding: 12px; border-radius: 8px; border: 1px solid #d1d5db; }
+    button { background: #1f2933; color: #fff; padding: 14px; border: none; border-radius: 8px; cursor: pointer; font-size: 1rem; transition: background 0.3s; }
+    button:hover { background: #374151; }
+    footer { background: #111827; color: #9ca3af; text-align: center; padding: 25px; margin-top: 60px; }
+
+    /* Botones flotantes */
+    .whatsapp, .instagram { position: fixed; bottom: 25px; color: #fff; padding: 14px 18px; border-radius: 50px; font-weight: bold; text-decoration: none; box-shadow: 0 6px 15px rgba(0,0,0,0.25); z-index: 1000; transition: transform 0.3s; }
+    .whatsapp { background: #25D366; right: 25px; }
+    .instagram { background: #E4405F; right: 180px; }
+    .whatsapp:hover, .instagram:hover { opacity: 0.9; transform: scale(1.05); }
+
+    .gallery img, .header-gallery img { width: 100%; border-radius: 12px; object-fit: cover; transition: transform 0.3s; }
+    .gallery img:hover, .header-gallery img:hover { transform: scale(1.05); }
+
+    /* Botón de edición */
+    .edit-button { position: fixed; top: 25px; right: 25px; background: #f59e0b; color: #fff; padding: 12px 18px; border-radius: 8px; font-weight: bold; text-decoration: none; z-index: 1000; }
+    .edit-button:hover { background: #d97706; }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+
+  <a class="edit-button" href="#" onclick="alert('Función de edición activada'); return false;">✏️ Editar Página</a>
+
+  <header>
+    <h1>ARCOM</h1>
+    <p>Arquitectura moderna y construcción de alta calidad<br>📞 +504 9985-6983</p>
+    <div class="header-gallery" id="headerInstagramGallery">
+      <!-- Imágenes de Instagram en el inicio -->
+    </div>
+  </header>
+
+  <nav>
+    <a href="#nosotros">Nosotros</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#proyectos">Proyectos</a>
+    <a href="#galeria">Galería</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+
+  <section id="nosotros">
+    <h2 class="section-title">Sobre Nosotros</h2>
+    <div class="about">
+      <div class="card">
+        <h3>Misión</h3>
+        <p>Diseñar y construir espacios funcionales, sostenibles y estéticamente innovadores que mejoren la calidad de vida de nuestros clientes.</p>
+      </div>
+      <div class="card">
+        <h3>Visión</h3>
+        <p>Ser una empresa referente en arquitectura y construcción, reconocida por la excelencia, la innovación y la confianza.</p>
+      </div>
+      <div class="card">
+        <h3>Valores</h3>
+        <p>Compromiso, calidad, transparencia, innovación y responsabilidad profesional.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicios">
+    <h2 class="section-title">Nuestros Servicios</h2>
+    <div class="services">
+      <div class="card">Diseño arquitectónico</div>
+      <div class="card">Construcción residencial y comercial</div>
+      <div class="card">Remodelaciones y ampliaciones</div>
+      <div class="card">Supervisión y gestión de obras</div>
+      <div class="card">Modelado 3D y renders</div>
+      <div class="card">Asesoría técnica y presupuestos</div>
+    </div>
+  </section>
+
+  <section id="porque">
+    <h2 class="section-title">¿Por qué elegir ARCOM?</h2>
+    <div class="why">
+      <div class="card">
+        <h3>Experiencia Profesional</h3>
+        <p>Contamos con un equipo altamente capacitado en arquitectura y construcción.</p>
+      </div>
+      <div class="card">
+        <h3>Calidad Garantizada</h3>
+        <p>Utilizamos materiales y procesos constructivos de alto estándar.</p>
+      </div>
+      <div class="card">
+        <h3>Cumplimiento y Confianza</h3>
+        <p>Entregamos proyectos en tiempo y forma, con total transparencia.</p>
+      </div>
+      <div class="card">
+        <h3>Diseño Personalizado</h3>
+        <p>Cada proyecto se adapta a las necesidades y visión del cliente.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="proyectos">
+    <h2 class="section-title">Proyectos Destacados</h2>
+    <div class="projects">
+      <div class="project">Proyecto Residencial</div>
+      <div class="project">Edificio Corporativo</div>
+      <div class="project">Centro Comercial</div>
+      <div class="project">Remodelación Interior</div>
+    </div>
+  </section>
+
+  <section id="galeria">
+    <h2 class="section-title">Galería de Instagram</h2>
+    <div class="gallery" id="instagramGallery">
+      <!-- Las imágenes se cargarán automáticamente -->
+    </div>
+  </section>
+
+  <section id="contacto">
+    <h2 class="section-title">Contáctanos</h2>
+    <p style="text-align:center; margin-bottom:20px;">Teléfono: <strong>+504 9985-6983</strong></p>
+    <div class="contact">
+      <form action="mailto:arcom.gestiones@gmail.com" method="post" enctype="text/plain">
+        <input type="text" placeholder="Nombre completo" required />
+        <input type="email" placeholder="Correo electrónico" required />
+        <input type="text" placeholder="Teléfono" />
+        <textarea rows="5" placeholder="Mensaje"></textarea>
+        <button type="submit">Enviar mensaje</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 ARCOM. Todos los derechos reservados.</p>
+  </footer>
+
+  <a class="whatsapp" href="https://wa.me/50499856983" target="_blank">💬 WhatsApp</a>
+  <a class="instagram" href="https://www.instagram.com/arcom_hn?igsh=MWJ5Y3YzcTIzNXppdA==" target="_blank">📸 Instagram</a>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const headerGallery = document.getElementById('headerInstagramGallery');
+      const exampleImages = [
+        'https://via.placeholder.com/400x200?text=Instagram+Inicio+1',
+        'https://via.placeholder.com/400x200?text=Instagram+Inicio+2',
+        'https://via.placeholder.com/400x200?text=Instagram+Inicio+3'
+      ];
+      exampleImages.forEach(url => {
+        const img = document.createElement('img');
+        img.src = url;
+        img.alt = 'Imagen de Instagram';
+        headerGallery.appendChild(img);
+      });
+
+      const gallery = document.getElementById('instagramGallery');
+      const galleryImages = [
+        'https://via.placeholder.com/400x300?text=Instagram+1',
+        'https://via.placeholder.com/400x300?text=Instagram+2',
+        'https://via.placeholder.com/400x300?text=Instagram+3',
+        'https://via.placeholder.com/400x300?text=Instagram+4'
+      ];
+      galleryImages.forEach(url => {
+        const img = document.createElement('img');
+        img.src = url;
+        img.alt = 'Imagen de Instagram';
+        gallery.appendChild(img);
+      });
+    });
+  </script>
+
+</body>
+</html>
